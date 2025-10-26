@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment — LeafCart</title>
+  <style>
+    body { 
+      margin:0;
+       font-family: "Segoe UI", Roboto, Arial, sans-serif;
+     background:#f4f7fb;
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     height:100vh; 
+  }
+    .wrap {
+       text-align:center;
+       background:#fff;
+       padding:36px;
+       border-radius:12px;
+       box-shadow:0 10px 30px rgba(0,0,0,0.08);
+       width:90%;
+       max-width:620px; 
+    }
+    h1 {
+       color:#1b7a32; margin-bottom:6px; }
+    p { 
+      color:#444;
+       margin-bottom:20px; 
+    }
+    .amount {
+       font-size:22px; font-weight:800;
+       color:#333; margin-bottom:20px; }
+    .confirm-btn {
+       background:#F9105E;
+       color:#fff;
+       padding:10px 16px;
+       border:none;
+       border-radius:8px;
+       font-weight:700;
+       cursor:pointer;
+     }
+    .back-home {
+       margin-top:12px; display:inline-block;
+       color:#F9105E;
+       text-decoration:none; 
+    }
+    .thankyou{
+      color: #f76b1c;
+    }
+    /* confetti canvas full screen */
+    #confetti-canvas {
+       position:fixed;
+       inset:0;
+       pointer-events:none;
+       z-index:9999; 
+    }
+    /* celebration box */
+    .celebrate { 
+      display:none;
+       margin-top:18px;
+     }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <div class="wrap">
+    <h1>Payment</h1>
+    <p>Confirm your payment to complete the order.</p>
+    <div class="amount" id="amountText">Total: ₹0</div>
+    <button class="confirm-btn" id="confirmPayment">Pay Now</button>
+    <div class="celebrate" id="celebrateBox">
+      <h2>✅ Payment Successfully done <h1 class="thankyou">Thank You!</h1></h2>
+      <p>Your order is confirmed. We'll deliver it soon.</p>
+      <a href="leafcart.html" class="back-home"><b>Back to Home</b></a>
+    </div>
+  </div>
+
+  <script>
+    // show total from localStorage
+    const amountText = document.getElementById('amountText');
+    const stored = localStorage.getItem('cartTotal') || 0;
+    amountText.textContent = 'Total: ₹' + stored;
+
+    const confirmBtn = document.getElementById('confirmPayment');
+    const celebrateBox = document.getElementById('celebrateBox');
+    const canvas = document.getElementById('confetti-canvas');
+
+    // confetti util (simple)
+    function launchConfetti() {
+      // small confetti implementation using canvas
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width = window.innerWidth;
+      const H = canvas.height = window.innerHeight;
+      const pieces = [];
+      const num = 160;
+      for (let i=0;i<num;i++){
+        pieces.push({
+          x: Math.random()*W,
+          y: Math.random()*-H,
+          w: 8 + Math.random()*8,
+          h: 8 + Math.random()*8,
+          vx: -2 + Math.random()*4,
+          vy: 2 + Math.random()*6,
+          color: ['#f94144','#f3722c','#f8961e','#f9c74f','#90be6d','#43aa8b','#577590'][Math.floor(Math.random()*7)],
+          r: Math.random()*360
+        });
+      }
+      let t = 0;
+      function frame() {
+        ctx.clearRect(0,0,W,H);
+        for (let p of pieces) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.03; // gravity
+          p.r += p.vx;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.r*Math.PI/180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.restore();
+        }
+        t++;
+        if (t < 300) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,W,H);
+      }
+      frame();
+    }
+
+    // Play confetti once per payment (use a flag to avoid repeat when reloading)
+    confirmBtn.addEventListener('click', () => {
+      // disable button
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Processing...';
+
+      // simulate a short delay then show success + confetti
+      setTimeout(() => {
+        confirmBtn.style.display = 'none';
+        celebrateBox.style.display = 'block';
+        launchConfetti();
+
+        // clear cart from localStorage after payment
+        localStorage.removeItem('leafcart_items');
+        localStorage.removeItem('leafcart_addCount');
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('cartTotal');
+        // optionally set a lastPaid stamp so the site won't pop again
+        localStorage.setItem('leafcart_paid_at', Date.now());
+      }, 900);
+    });
+
+    // ensure canvas resizes
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    // set initial canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  </script>
+</body>
+</html>

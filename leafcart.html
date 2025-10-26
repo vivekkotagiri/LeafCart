@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LeafCart — Home</title>
+    <link rel="stylesheet" href="leafcart.css" />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <nav id="navbar">
+            <div class="nav-left">
+                <!-- Big text logo placeholder (replace with image if you have one) -->
+                <div id="logo">
+                    <!-- If you add an image later, replace the <span> with <img src="leafcart_logo.png" alt="LeafCart"> -->
+                    <span class="logo-text">LeafCart🛒.in</span>
+                </div>
+            </div>
+
+            <div class="nav-center">
+                <ul id="nav-links">
+                    <li class="nav-item has-dropdown" data-target="about-drop">
+                        <button class="nav-btn">About <span class="arrow">▾</span></button>
+                    </li>
+                    <li class="nav-item has-dropdown" data-target="careers-drop">
+                        <button class="nav-btn">Careers <span class="arrow">▾</span></button>
+                    </li>
+                    <li class="nav-item has-dropdown" data-target="products-drop">
+                        <button class="nav-btn">Products <span class="arrow">▾</span></button>
+                    </li>
+                    <li class="nav-item has-dropdown" data-target="contact-drop">
+                        <button class="nav-btn">Contact Us <span class="arrow">▾</span></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <button class="cart-btn" id="cartBtn">View Cart (<span id="cartCount">0</span>)</button>
+                <button id="profileBtn" class="profile-btn" aria-label="Profile">
+                    <!-- rounded contact/profile icon -->
+                    <span class="profile-circle" id="profileIcon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM3 20c0-3.31 2.69-6 6-6h6c3.31 0 6 2.69 6 6v1H3v-1z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                </button>
+                <button id="hamburger" aria-label="menu">☰</button>
+            </div>
+        </nav>
+
+        <!-- Dropdown containers (hidden by default) -->
+        <div class="dropdowns">
+            <div id="about-drop" class="dropdown">
+                <h3>About Us</h3>
+                <p>
+                    <b>LeafCart</b> is your one-stop online grocery store, delivering fresh vegetables, fruits, and dairy products straight to your doorstep. We prioritize quality, freshness, and convenience, making your grocery shopping faster and hassle-free. Our mission is to make healthy and fresh food accessible to everyone, with a seamless shopping experience and reliable home delivery.
+<br><br>
+We believe in customer satisfaction, sustainable sourcing, and supporting local farmers. At LeafCart, every product is carefully selected to ensure you get the best quality, every time.
+                </p>
+            </div>
+
+            <div id="careers-drop" class="dropdown">
+                <h3>Careers</h3>
+                <ul class="roles">
+                    <li><strong>Frontend Developer</strong> — Work on UI/UX of LeafCart web app.</li>
+                    <li><strong>Store Manager</strong> — Manage operations with partner shops.</li>
+                    <li><strong>Delivery Coordinator</strong> — Coordinate deliveries and logistics.</li>
+                    <li><strong>Customer Support</strong> — Help customers via chat/phone/email.</li>
+                </ul>
+            </div>
+
+            <div id="products-drop" class="dropdown">
+                <h3>Products</h3>
+                <ul class="prod-list">
+                    <li>Vegetables</li>
+                    <li>Fruits</li>
+                    <li>Dairy Products</li>
+                    <li>Bakery...To be soon😉</li>
+                    <li>Household Essentials...To be soon😉</li>
+                </ul>
+            </div>
+
+            <div id="contact-drop" class="dropdown">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:contact@LeafCart.com">contact@LeafCart.com</a></p>
+                <p>Phone: <strong>+91 9182002902</strong></p>
+                <p>Address: Gayathri Nagar,Nizamabad,503001,Telangana</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Sidebar -->
+    <aside id="profileSidebar" aria-hidden="true">
+        <div class="profile-inner">
+            <button id="closeProfile" class="close-icon">✕</button>
+            <h3>Customer Profile</h3>
+
+            <div class="profile-display">
+                <div class="profile-pic">
+                    <!-- round man icon -->
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM3 20c0-3.31 2.69-6 6-6h6c3.31 0 6 2.69 6 6v1H3v-1z" fill="#fff"/>
+                    </svg>
+                </div>
+
+                <div class="profile-info">
+                    <label>Name</label>
+                    <input type="text" id="profileName" placeholder="Your name">
+                    <label>Email</label>
+                    <input type="email" id="profileEmail" placeholder="you@example.com">
+                    <div class="profile-actions">
+                        <button id="saveProfile">Save</button>
+                        <button id="clearProfile" class="muted">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Category bar (homepage heading + tabs) -->
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <h1>Fresh groceries, delivered to your door step</h1>
+                <p class="hero-sub">Choose from Vegetables, Fruits, Dairy & more — farm fresh every day.</p>
+                <div class="category-bar">
+                    <button class="cat-btn active" data-target="all">Home</button>
+                    <button class="cat-btn" data-target="vegetables">Vegetables</button>
+                    <button class="cat-btn" data-target="fruits">Fruits</button>
+                    <button class="cat-btn" data-target="dairy">Dairy Products</button>
+                    <!-- <button class="cat-btn" id="viewCartShort">View Cart</button> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Search row -->
+        <div class="search-row">
+            <div class="search-container">
+                <input id="searchInput" type="search" placeholder="Search products..." />
+                <button id="searchBtn">Search</button>
+            </div>
+            <button id="goBackBtn" class="go-back" style="display:none;">Go Back</button>
+        </div>
+
+        <!-- PRODUCTS AREA -->
+        <section id="productsArea">
+            <!-- All products shown on home by default -->
+            <div id="allProducts" class="products-grid">
+                <!-- Vegetables -->
+                <h2 class="section-title">Vegetables</h2>
+                <div class="cards">
+                    <div class="card"><img src="tomato.jpg" alt="Tomato"><p class="name">Tomato</p><p class="price">₹40 per/kg</p><button data-name="Tomato" data-price="40">Add</button></div>
+                    <div class="card"><img src="onion.jpg" alt="Onion"><p class="name">Onion</p><p class="price">₹50 per/kg</p><button data-name="Onion" data-price="50">Add</button></div>
+                    <div class="card"><img src="potato.jpg" alt="Potato"><p class="name">Potato</p><p class="price">₹30 per/kg</p><button data-name="Potato" data-price="30">Add</button></div>
+                    <div class="card"><img src="carrot.jpg" alt="Carrot"><p class="name">Carrot</p><p class="price">₹35 per/kg</p><button data-name="Carrot" data-price="35">Add</button></div>
+                    <div class="card"><img src="green chilli.jpg" alt="green chilli"><p class="name">Green Chilli</p><p class="price">₹20 per/kg</p><button data-name="green chilli" data-price="20">Add</button></div>
+                    <div class="card"><img src="brinjal.jpg" alt="brinjal"><p class="name">Brinjal</p><p class="price">₹30 per/kg</p><button data-name="brinjal" data-price="30">Add</button></div>
+                    <div class="card"><img src="ginger.jpg" alt="ginger"><p class="name">Ginger</p><p class="price">₹45 per/kg</p><button data-name="ginger" data-price="45">Add</button></div>
+                    <div class="card"><img src="lady finger.jpg" alt="lady finger"><p class="name">Lady Finger</p><p class="price">₹25 per/kg</p><button data-name="lady finger" data-price="25">Add</button></div>
+                    <div class="card"><img src="coriander.jpg" alt="coriander"><p class="name">Coriander</p><p class="price">₹10 per/1pcs</p><button data-name="Coriander" data-price="10">Add</button></div>
+                    <div class="card"><img src="cabbage.jpg" alt="cabbage"><p class="name">Cabbage</p><p class="price">₹35 per/kg</p><button data-name="Cabbage" data-price="35">Add</button></div>
+                    <div class="card"><img src="spinach.jpg" alt="spinach"><p class="name">Spinach</p><p class="price">₹15 per/2pcs</p><button data-name="spinach" data-price="15">Add</button></div>
+                    <div class="card"><img src="broccoli.jpg" alt=""><p class="name">Broccoli</p><p class="price">₹30 per/kg</p><button data-name="broccoli" data-price="30">Add</button></div>
+                    <div class="card"><img src="sweetcorn.jpg" alt=""><p class="name">Sweetcorn</p><p class="price">₹10 per/1pcs</p><button data-name="Sweetcorn" data-price="10">Add</button></div>
+                </div>
+              
+
+                <!-- Fruits -->
+                <h2 class="section-title">Fruits</h2>
+                <div class="cards">
+                    <div class="card"><img src="apple.jpg" alt="Apple"><p class="name">Apple</p><p class="price">₹100 per/kg</p><button data-name="Apple" data-price="100">Add</button></div>
+                    <div class="card"><img src="banana.jpg" alt="Banana"><p class="name">Banana</p><p class="price">₹60 per/kg</p><button data-name="Banana" data-price="60">Add</button></div>
+                    <div class="card"><img src="orange.jpg" alt="Orange"><p class="name">Orange</p><p class="price">₹80 per/kg</p><button data-name="Orange" data-price="80">Add</button></div>
+                    <div class="card"><img src="graps.jpg" alt="Graps"><p class="name">Grapes</p><p class="price">₹100 per/kg</p><button data-name="Grapes" data-price="100">Add</button></div>
+                    <div class="card"><img src="papaya.jpg" alt="Papaya"><p class="name">Papaya</p><p class="price">₹40 per/kg</p><button data-name="Papaya" data-price="40">Add</button></div>
+                    <div class="card"><img src="mosambi.jpg" alt="Mosambi"><p class="name">Mosambi</p><p class="price">₹30 per/kg</p><button data-name="Mosambi" data-price="30">Add</button></div>
+                    <div class="card"><img src="mango.jpg" alt="Mango"><p class="name">Mango</p><p class="price">₹20 per/kg</p><button data-name="Mango" data-price="20">Add</button></div>
+                    <div class="card"><img src="dragon.jpg" alt="Dragon"><p class="name">Dragon</p><p class="price">₹40 per/kg</p><button data-name="Dragon" data-price="40">Add</button></div>
+                    <div class="card"><img src="coconut.jpg" alt="Coconut"><p class="name">Coconut</p><p class="price">₹60 per/1pcs</p><button data-name="Coconut" data-price="60">Add</button></div>
+                    <div class="card"><img src="guava.jpg" alt="Guava"><p class="name">Guava</p><p class="price">₹25 per/kg</p><button data-name="Guava" data-price="25">Add</button></div>
+                    <div class="card"><img src="pineapple.jpg" alt="Pineapple"><p class="name">Pineapple</p><p class="price">₹40 per/kg</p><button data-name="Pineapple" data-price="40">Add</button></div>
+                    <div class="card"><img src="pomegranate.jpg" alt="Pomegranate"><p class="name">Pomegranate</p><p class="price">₹30 per/kg</p><button data-name="Pomegranate" data-price="30">Add</button></div>
+                    <div class="card"><img src="black grapes.jpg" alt="Black grapes"><p class="name">Black grapes</p><p class="price">₹80 per/kg</p><button data-name="Black grapes" data-price="80">Add</button></div>
+                </div>
+
+                <!-- Dairy -->
+                <h2 class="section-title">Dairy Products</h2>
+                <div class="cards">
+                    <div class="card"><img src="milk.jpg" alt="Milk"><p class="name">Milk</p><p class="price">₹50 per/1pack</p><button data-name="Milk" data-price="50">Add</button></div>
+                    <div class="card"><img src="curd.jpg" alt="Curd"><p class="name">Curd</p><p class="price">₹60 per/1pack</p><button data-name="Curd" data-price="60">Add</button></div>
+                    <div class="card"><img src="cheese.jpg" alt="Cheese"><p class="name">Cheese</p><p class="price">₹120 per/1pack</p><button data-name="Cheese" data-price="120">Add</button></div>
+                    <div class="card"><img src="ghee.jpg" alt="Ghee"><p class="name">Ghee</p><p class="price">₹500 per/kg</p><button data-name="Ghee" data-price="500">Add</button></div>
+                    <div class="card"><img src="paneer.jpg" alt="Paneer"><p class="name">Paneer</p><p class="price">₹100 per/1pack</p><button data-name="Paneer" data-price="100">Add</button></div>
+                    <div class="card"><img src="butter.jpg" alt="Butter"><p class="name">Butter</p><p class="price">₹50 per/1pack</p><button data-name="Butter" data-price="50">Add</button></div>
+                </div>
+            </div>
+
+            <!-- Single category containers (hidden by default, used when a category button clicked) -->
+            <div id="vegetables" class="products-grid single-grid" style="display:none;">
+                <h2 class="section-title">Vegetables</h2>
+                <div class="cards">
+                    <!-- same cards as above → keep consistent data-name attributes -->
+                    <div class="card"><img src="tomato.jpg" alt="Tomato"><p class="name">Tomato</p><p class="price">₹40</p><button data-name="Tomato" data-price="40">Add</button></div>
+                    <div class="card"><img src="onion.jpg" alt="Onion"><p class="name">Onion</p><p class="price">₹50</p><button data-name="Onion" data-price="50">Add</button></div>
+                    <div class="card"><img src="potato.jpg" alt="Potato"><p class="name">Potato</p><p class="price">₹30</p><button data-name="Potato" data-price="30">Add</button></div>
+                    <div class="card"><img src="carrot.jpg" alt="Carrot"><p class="name">Carrot</p><p class="price">₹35</p><button data-name="Carrot" data-price="35">Add</button></div>
+                    <div class="card"><img src="green chilli.jpg" alt="green chilli"><p class="name">Green Chilli</p><p class="price">₹20</p><button data-name="green chilli" data-price="20">Add</button></div>
+                    <div class="card"><img src="brinjal.jpg" alt="brinjal"><p class="name">Brinjal</p><p class="price">₹30</p><button data-name="brinjal" data-price="30">Add</button></div>
+                    <div class="card"><img src="ginger.jpg" alt="ginger"><p class="name">Ginger</p><p class="price">₹45</p><button data-name="ginger" data-price="45">Add</button></div>
+                    <div class="card"><img src="lady finger.jpg" alt="lady finger"><p class="name">Lady Finger</p><p class="price">₹25</p><button data-name="lady finger" data-price="25">Add</button></div>
+                    <div class="card"><img src="coriander.jpg" alt="coriander"><p class="name">Coriander</p><p class="price">₹10</p><button data-name="Coriander" data-price="10">Add</button></div>
+                    <div class="card"><img src="cabbage.jpg" alt="cabbage"><p class="name">Cabbage</p><p class="price">₹35</p><button data-name="Cabbage" data-price="35">Add</button></div>
+                    <div class="card"><img src="spinach.jpg" alt="spinach"><p class="name">Spinach</p><p class="price">₹15</p><button data-name="spinach" data-price="15">Add</button></div>
+                    <div class="card"><img src="broccoli.jpg" alt=""><p class="name">Broccoli</p><p class="price">₹30 per/kg</p><button data-name="broccoli" data-price="30">Add</button></div>
+                    <div class="card"><img src="sweetcorn.jpg" alt=""><p class="name">Sweetcorn</p><p class="price">₹10 per/1pcs</p><button data-name="Sweetcorn" data-price="10">Add</button></div>
+                </div>
+            </div>
+
+            <div id="fruits" class="products-grid single-grid" style="display:none;">
+                <h2 class="section-title">Fruits</h2>
+                <div class="cards">
+                    <div class="card"><img src="apple.jpg" alt="Apple"><p class="name">Apple</p><p class="price">₹100</p><button data-name="Apple" data-price="100">Add</button></div>
+                    <div class="card"><img src="banana.jpg" alt="Banana"><p class="name">Banana</p><p class="price">₹60</p><button data-name="Banana" data-price="60">Add</button></div>
+                    <div class="card"><img src="orange.jpg" alt="Orange"><p class="name">Orange</p><p class="price">₹80</p><button data-name="Orange" data-price="80">Add</button></div>
+                    <div class="card"><img src="graps.jpg" alt="Graps"><p class="name">Grapes</p><p class="price">₹100</p><button data-name="Grapes" data-price="100">Add</button></div>
+                    <div class="card"><img src="papaya.jpg" alt="Papaya"><p class="name">Papaya</p><p class="price">₹40</p><button data-name="Papaya" data-price="40">Add</button></div>
+                    <div class="card"><img src="mosambi.jpg" alt="Mosambi"><p class="name">Mosambi</p><p class="price">₹30</p><button data-name="Mosambi" data-price="30">Add</button></div>
+                    <div class="card"><img src="mango.jpg" alt="Mango"><p class="name">Mango</p><p class="price">₹20</p><button data-name="Mango" data-price="20">Add</button></div>
+                    <div class="card"><img src="dragon.jpg" alt="Dragon"><p class="name">Dragon</p><p class="price">₹40</p><button data-name="Dragon" data-price="40">Add</button></div>
+                    <div class="card"><img src="coconut.jpg" alt="Coconut"><p class="name">Coconut</p><p class="price">₹60</p><button data-name="Coconut" data-price="60">Add</button></div>
+                    <div class="card"><img src="guava.jpg" alt="Guava"><p class="name">Guava</p><p class="price">₹25</p><button data-name="Guava" data-price="25">Add</button></div>
+                    <div class="card"><img src="pineapple.jpg" alt="Pineapple"><p class="name">Pineapple</p><p class="price">₹40</p><button data-name="Pineapple" data-price="40">Add</button></div>
+                    <div class="card"><img src="pomegranate.jpg" alt="Pomegranate"><p class="name">Pomegranate</p><p class="price">₹30</p><button data-name="Pomegranate" data-price="30">Add</button></div>
+                    <div class="card"><img src="black grapes.jpg" alt="Black grapes"><p class="name">Black grapes</p><p class="price">₹80</p><button data-name="Black grapes" data-price="80">Add</button></div>
+                </div>
+            </div>
+
+            <div id="dairy" class="products-grid single-grid" style="display:none;">
+                <h2 class="section-title">Dairy Products</h2>
+                <div class="cards">
+                    <div class="card"><img src="milk.jpg" alt="Milk"><p class="name">Milk</p><p class="price">₹50</p><button data-name="Milk" data-price="50">Add</button></div>
+                    <div class="card"><img src="curd.jpg" alt="Curd"><p class="name">Curd</p><p class="price">₹60</p><button data-name="Curd" data-price="60">Add</button></div>
+                    <div class="card"><img src="cheese.jpg" alt="Cheese"><p class="name">Cheese</p><p class="price">₹120</p><button data-name="Cheese" data-price="120">Add</button></div>
+                    <div class="card"><img src="ghee.jpg" alt="Ghee"><p class="name">Ghee</p><p class="price">₹500</p><button data-name="Ghee" data-price="500">Add</button></div>
+                    <div class="card"><img src="paneer.jpg" alt="Paneer"><p class="name">Paneer</p><p class="price">₹100</p><button data-name="Paneer" data-price="100">Add</button></div>
+                    <div class="card"><img src="butter.jpg" alt="Butter"><p class="name">Butter</p><p class="price">₹50</p><button data-name="Butter" data-price="50">Add</button></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal" aria-hidden="true" style="display:none;">
+        <div class="cart-content">
+            <button class="close-cart" id="closeCart">✕</button>
+            <h3>Cart Items</h3>
+            <ul class="cart-list"></ul>
+            <p class="total">Total: ₹0</p>
+            <div class="cart-actions">
+                <button id="checkoutBtn">Make Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (advanced) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <span class="logo-text">LeafCart🛒.in</span>
+                <!-- <img src="logo.png" alt="LeafCart Logo" class="footer-logo"> -->
+                <p>
+We believe in customer satisfaction, sustainable sourcing, and supporting local farmers. At LeafCart, every product is carefully selected to ensure you get the best quality, every time.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Single item</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Help & Info</h4>
+                <ul>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Returns + Exchanges</a></li>
+                    <li><a href="#">Shipping + Delivery</a></li>
+                    <li><a href="#">Find us easy</a></li>
+                    <li><a href="#">Faqs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Do you have any questions or suggestions? <br>
+                <a href="mailto:contact@leafcart.com">contact@leafcart.com</a></p>
+                <p>Do you need support? Give us a call. <br>
+                <strong>+91 9182002902</strong></p>
+            </div>
+        </div>
+
+            <div class="footer-icons">
+                <p>Payment Options:</p>
+                <img src="phone-pay.png" alt="phone-pay">
+                <img src="google pay" alt="google pay">
+                <img src="paytm.png" alt="paytm">
+            </div>
+        </div>
+
+        <div class="footer-copy">
+            © 2025 LeafCart. All rights reserved. Design by <h2 class="myname">Vivek Kotagiri.</h2>
+        </div>
+    </footer>
+
+    <script src="leafcart.js"></script>
+</body>
+</html>
