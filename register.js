@@ -23,7 +23,7 @@ function registerUser(event) {
     const existingEmail = localStorage.getItem("registeredEmail");
     if (existingEmail && existingEmail === email) {
         alert("⚠️ This email is already registered! Please login.");
-        window.location.href = "leafcartlogin.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -32,12 +32,12 @@ function registerUser(event) {
     localStorage.setItem("registeredPassword", password);
 
     alert("✅ Registration successful! Please login now.");
-    window.location.href = "leafcartlogin.html"; // redirect to login page
+    window.location.href = "index.html"; // redirect to login page
 }
 
 function loginUser(event) {
     event.preventDefault(); // Prevent page refresh
-    window.location.href = "leafcartlogin.html";
+    window.location.href = "index.html";
 }
 
 
